@@ -41,3 +41,10 @@ $ pip install -r requirements.txt
 $ ansible-playbook site.yml -vvvv --ask-become-pass
 ```
 
+* link dot file
+
+```bash
+$ ln -s /Users/makotan/setup/mac-os-x-setup/.zshrc ~/.zshrc
+$ ln -s /Users/makotan/setup/mac-os-x-setup/.emacs.d ~/.emacs.d
+```
+

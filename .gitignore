@@ -1,2 +1,4 @@
 ansible
 *.retry
+.emacs.d/elpa
+.emacs.d/auto-save-list
