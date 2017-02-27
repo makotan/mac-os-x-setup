@@ -1,0 +1,91 @@
+---
+homebrew_taps:
+  - { tap: caskroom/cask }
+  - { tap: homebrew/binary }
+  - { tap: homebrew/dupes }
+  - { tap: caskroom/fonts }
+  - { tap: caskroom/versions }
+  - { tap: sanemat/font }
+  - { tap: kevwil/patches }
+  - { tap: bfontaine/utils }
+  - { tap: caarlos0/antibody }
+  - { tap: caius/jo }
+  - { tap: classmethod/repos }
+  - { tap: railwaycat/emacsmacport }
+
+homebrew_cask_packages:
+  - { name: iterm2 }
+  - { name: google-japanese-ime }
+  - { name: xquartz }
+  - { name: slack }
+  - { name: docker }
+
+homebrew_packages:
+  - { name: brew-cask }
+  - { name: ghq, install_options: completions }
+  - { name: pcre }
+  - { name: libxml2 }
+  - { name: glib }
+  - { name: fontconfig }
+  - { name: readline }
+  - { name: openssl }
+  - { name: python }
+  - { name: python3 }
+  - { name: coreutils }
+  - { name: git }
+  - { name: zsh, install_options: disable-etcdir }
+  - { name: wget }
+  - { name: curl }
+  - { name: cmake }
+  - { name: autoconf }
+  - { name: automake }
+  - { name: pkg-config }
+  - { name: ctags }
+  - { name: tree }
+#  - { name: nkf }
+  - { name: jq }
+  - { name: go }
+  - { name: direnv }
+  - { name: peco }
+  - { name: hub }
+  - { name: rbenv }
+  - { name: ruby-build }
+  - { name: rbenv-binstubs }
+  - { name: w3m }
+  - { name: tmux }
+  - { name: reattach-to-user-namespace }
+  - { name: sha2 }
+  - { name: xz }
+  - { name: lua }
+  - { name: pyenv }
+  - { name: pyenv-virtualenv }
+  - { name: plenv }
+  - { name: perl-build }
+  - { name: gpg }
+  - { name: msmtp }
+  - { name: getmail }
+  - { name: abook }
+  - { name: ripmime }
+  - { name: urlview }
+  - { name: mobile-shell }
+  - { name: xhyve }
+  - { name: ricty }
+  - { name: kevwil/patches/mutt, install_options: "with-sidebar-patch, with-confirm-attachement-patch, with-trash-patch" }
+  - { name: npm }
+  - { name: fpp }
+  - { name: bash }
+  - { name: antibody }
+  - { name: freetype }
+  - { name: procmail }
+  - { name: argon/mas/mas }
+  - { name: watch }
+  - { name: unar }
+  - { name: jo }
+  - { name: aurl }
+  - { name: gnu-sed }
+  - { name: gifsicle }
+  - { name: ffmpeg }
+  - { name: maven }
+  - { name: gradle }
+  - { name: emacs-mac, install_options: " --with-modern-icon" }
+  - { name: emacs-mac, state: "linked" }

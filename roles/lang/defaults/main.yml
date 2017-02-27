@@ -1,0 +1,32 @@
+---
+gem_packages:
+#  - { name: rubocop }
+#  - { name: bundler }
+#  - { name: pry }
+#  - { name: terraforming }
+#  - { name: statelint }
+
+go_packages:
+#  - { name: httpdoc, path: github.com/bfontaine/httpdoc }
+#  - { name: gotty, path: github.com/yudai/gotty }
+#  - { name: ghdump, path: github.com/knakayama/ghdump }
+#  - { name: apex-shell, path: github.com/apex/apex-shell }
+
+npm_packages:
+#  - { name: serverless }
+
+pip_packages:
+#  - { name: flake8 }
+  - { name: ipython }
+  - { name: ansible }
+  - { name: ansible_lint }
+  - { name: awscli }
+  - { name: awsebcli }
+  - { name: aws-shell }
+  - { name: boto3 }
+#  - { name: neovim }
+  - { name: awslogs }
+#  - { name: chalice }
+
+pip3_packages:
+#  - { name: neovim }
