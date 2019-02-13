@@ -24,6 +24,14 @@
 (unless (package-installed-p 'clojure-mode)
   (package-install 'clojure-mode))
 
+(unless (package-installed-p 'rust-mode)
+  (package-install 'rust-mode))
+
+(unless (package-installed-p 'markdown-mode)
+  (package-install 'markdown-mode))
+
+
+
 ; server start for emacs-client
 (require 'server)
 (unless (server-running-p)
@@ -73,8 +81,8 @@
                       (concat ".*" input-pattern)))))))
 
 
-(require 'popwin)
-(setq display-buffer-function 'popwin:display-buffer)
+;;(require 'popwin)
+;;(setq display-buffer-function 'popwin:display-buffer)
 
 (require 'direx)
 (require 'direx-project)
@@ -95,8 +103,8 @@
 (global-set-key (kbd "C-x C-j") 'my/dired-jump)
 
 ;; widthは環境に合わせて調整してください。
-(push '(direx:direx-mode :position left :width 40 :dedicated t)
-      popwin:special-display-config)
+;;(push '(direx:direx-mode :position left :width 40 :dedicated t)
+;;      popwin:special-display-config)
 
 ;(require 'alchemist)
 (setq alchemist-project-compile-when-needed t)
@@ -123,7 +131,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (clojure-mode alchemist direx popwin))))
+ '(package-selected-packages
+   (quote
+    (org-link-minor-mode flymd cargo flycheck-rust flymake-rust racer rust-mode clojure-mode alchemist direx popwin))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -166,3 +176,94 @@
                    (call-interactively command)))
                (message "Quit")
                (throw 'end-flag t)))))))
+
+;; rust-mode
+
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+
+;; markdown-mode
+
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+(autoload 'gfm-mode "markdown-mode"
+   "Major mode for editing GitHub Flavored Markdown files" t)
+(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
+
+;; OCaml
+(load "/Users/makotan/.opam/system/share/emacs/site-lisp/tuareg-site-file")
+
+(let ((opam-share (ignore-errors (car (process-lines "opam" "config" "var" "share")))))
+  (when (and opam-share (file-directory-p opam-share))
+   ;; Register Merlin
+   (add-to-list 'load-path (expand-file-name "emacs/site-lisp" opam-share))
+   (autoload 'merlin-mode "merlin" nil t nil)
+   ;; Automatically start it in OCaml buffers
+   (add-hook 'tuareg-mode-hook 'merlin-mode t)
+   (add-hook 'caml-mode-hook 'merlin-mode t)
+   ;; Use opam switch to lookup ocamlmerlin binary
+   (setq merlin-command 'opam)))
+
+
+
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
+
+;;; Mac-only configuration to use command and options keys
+(when (eq system-type 'darwin)
+  ;; Mac-only
+  ;; Command key as Meta key, Option key untouched
+  ;; http://www.emacswiki.org/emacs/MetaKeyProblems#toc15
+  ;; http://ergoemacs.org/emacs/emacs_hyper_super_keys.html
+  ;;
+  ;; left command
+  ;; (setq mac-command-modifier 'meta)
+  ;; left option
+  (setq mac-option-modifier 'meta)
+  ;;
+  ;; right command
+  ;; (setq mac-right-command-modifier 'super)
+  ;; right option
+  (setq mac-right-option-modifier 'meta)
+  ;;
+  ;; Mac Binding modifier keys
+  ;; http://www.emacswiki.org/emacs/EmacsForMacOS#toc23
+  ;; mac-function-modifier
+  ;; mac-control-modifier
+  ;; mac-command-modifier
+  ;; mac-option-modifier
+  ;; mac-right-command-modifier
+  ;; mac-right-control-modifier
+  ;; mac-right-option-modifier
+  ;; values can be 'control (C), 'alt (A), 'meta (M), 'super (s), or 'hyper (H).
+  ;; setting to nil allows the OS to assign values
+  )
+
+;; org-mode
+
+(setq inhibit-splash-screen t)
+
+(transient-mark-mode 1)
+
+(require 'org)
+
+;; 拡張子がorgのファイルを開いた時，自動的にorg-modeにする
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+;; org-modeでの強調表示を可能にする
+(add-hook 'org-mode-hook 'turn-on-font-lock)
+;; 見出しの余分な*を消す
+(setq org-hide-leading-stars t)
+;; org-default-notes-fileのディレクトリ
+(setq org-directory "~/org/")
+;; org-default-notes-fileのファイル名
+(setq org-default-notes-file "notes.org")
+
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
+
+

@@ -147,9 +147,13 @@ alias ll="ls -l"
 
 
 PATH=$PATH:$HOME/.rvm/bin:/usr/local/bin # Add RVM to PATH for scripting
+PATH=$PATH:
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+source $HOME/.cargo/env
 
+# OPAM configuration
+. /Users/makotan/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

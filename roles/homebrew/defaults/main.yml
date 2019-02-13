@@ -89,3 +89,4 @@ homebrew_packages:
   - { name: gradle }
   - { name: emacs-mac, install_options: " --with-modern-icon" }
   - { name: emacs-mac, state: "linked" }
+#  - { name: cargo }

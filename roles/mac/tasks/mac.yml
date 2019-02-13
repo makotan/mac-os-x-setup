@@ -13,6 +13,10 @@
   args:
     creates: "{{ ansible_user_dir }}/Library/Fonts/Ricty-Bold.ttf"
 
+- name: Install Rust toolchain
+  shell: |
+    curl https://sh.rustup.rs -sSf | sh
+
 #- name: Setup OS X defaults
 #  osx_defaults:
 #    domain: "{{ item.domain }}"
